@@ -29,6 +29,8 @@ def args_parser():
     # Data
     parser.add_argument('--dataset', type=str, default='cifar10',
                         help='datasets: {cifar100, cifar10, femnist, mnist}')
+    parser.add_argument('--download', type=bool, default=False,
+                        help='download dataset')
     parser.add_argument('--batchsize', type=int, default=128,
                         help='batchsize')
     parser.add_argument('--split', type=int, default=5,

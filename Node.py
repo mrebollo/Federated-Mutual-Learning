@@ -13,6 +13,10 @@ def init_model(model_type):
         model = Model.ResNet18()
     elif model_type == 'CNN':
         model = Model.CNN()
+    elif model_type == 'CNN1':
+        model = Model.CNN1()
+    elif model_type == 'CNN2':
+        model = Model.CNN2()
     return model
 
 
@@ -65,3 +69,4 @@ class Global_Node(object):
             for i in range(len(Node_List)):
                 self.Dict[key] += Node_State_List[i][key]
             self.Dict[key] /= len(Node_List)
+        self.model.load_state_dict(self.Dict)

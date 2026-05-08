@@ -68,6 +68,8 @@ class FEMNIST(MNIST):
 
 def Dataset(args):
     trainset, testset = None, None
+    print("Loading dataset {}...".format(args.dataset))
+    print("Download: {}".format(args.download))
 
     if args.dataset == 'cifar10':
         tra_trans = transforms.Compose([
@@ -80,8 +82,8 @@ def Dataset(args):
             transforms.ToTensor(),
             transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
         ])
-        trainset = CIFAR10(root="~/data", train=True, download=False, transform=tra_trans)
-        testset = CIFAR10(root="~/data", train=False, download=False, transform=val_trans)
+        trainset = CIFAR10(root="~/data", train=True, download=args.download, transform=tra_trans)
+        testset = CIFAR10(root="~/data", train=False, download=args.download, transform=val_trans)
 
     if args.dataset == 'femnist' or 'mnist':
         tra_trans = transforms.Compose([
@@ -95,11 +97,11 @@ def Dataset(args):
             transforms.Normalize((0.1307,), (0.3081,)),
         ])
         if args.dataset == 'femnist':
-            trainset = FEMNIST(root='~/data', train=True, transform=tra_trans)
-            testset = FEMNIST(root='~/data', train=False, transform=val_trans)
+            trainset = FEMNIST(root='~/data', train=True, download=args.download, transform=tra_trans)
+            testset = FEMNIST(root='~/data', train=False, download=args.download, transform=val_trans)
         if args.dataset == 'mnist':
-            trainset = MNIST(root='~/data', train=True, transform=tra_trans)
-            testset = MNIST(root='~/data', train=False, transform=val_trans)
+            trainset = MNIST(root='~/data', train=True, download=args.download, transform=tra_trans)
+            testset = MNIST(root='~/data', train=False, download=args.download, transform=val_trans)
 
     return trainset, testset
 
@@ -120,9 +122,9 @@ class Data(object):
         # idx_train = sorted(range(len(trainset.targets)), key=lambda k: trainset.targets[k])  #split by class
         idx_test = range(len(testset.targets))
         splited_testset = [Subset(testset, idx_test[off - l:off]) for off, l in zip(cumsum_test, num_test)]
-        self.test_all = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=4)
-        self.train_loader = [DataLoader(splited_trainset[i], batch_size=args.batchsize, shuffle=True, num_workers=4)
+        self.test_all = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=0)
+        self.train_loader = [DataLoader(splited_trainset[i], batch_size=args.batchsize, shuffle=True, num_workers=0)
                              for i in range(args.node_num)]
-        self.test_loader = [DataLoader(splited_testset[i], batch_size=args.batchsize, shuffle=False, num_workers=4)
+        self.test_loader = [DataLoader(splited_testset[i], batch_size=args.batchsize, shuffle=False, num_workers=0)
                             for i in range(args.node_num)]
-        self.test_loader = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=4)
+        self.test_loader = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=0)

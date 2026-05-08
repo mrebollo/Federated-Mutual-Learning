@@ -128,3 +128,43 @@ class CNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
+
+
+class CNN1(nn.Module):
+    """Equivalent to CNN1Agent in pref_macofl (6->16 conv, FC1 configurable)."""
+
+    def __init__(self):
+        super(CNN1, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 3)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 3)
+        self.fc1 = nn.Linear(16 * 6 * 6, 120)
+        self.fc2 = nn.Linear(120, 10)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(x.size(0), -1)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+
+class CNN2(nn.Module):
+    """Equivalent to CNN2Agent in pref_macofl (128->128->128 conv, 1 FC output)."""
+
+    def __init__(self):
+        super(CNN2, self).__init__()
+        self.conv1 = nn.Conv2d(3, 128, 3)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(128, 128, 3)
+        self.conv3 = nn.Conv2d(128, 128, 3)
+        self.fc = nn.Linear(128 * 2 * 2, 10)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = self.pool(F.relu(self.conv3(x)))
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+        return x

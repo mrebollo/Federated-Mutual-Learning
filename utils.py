@@ -39,8 +39,8 @@ class Recorder(object):
         if self.val_acc[str(node.num)][-1] > self.acc_best[node.num]:
             self.get_a_better[node.num] = 1
             self.acc_best[node.num] = self.val_acc[str(node.num)][-1]
-            torch.save(node.model.state_dict(),
-                       './saves/model/Node{:d}_{:s}.pt'.format(node.num, node.args.local_model))
+            # torch.save(node.model.state_dict(),
+            #            './saves/model/Node{:d}_{:s}.pt'.format(node.num, node.args.local_model))
 
     def printer(self, node):
         if self.get_a_better[node.num] == 1:
