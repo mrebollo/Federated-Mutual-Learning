@@ -51,6 +51,34 @@ def train_avg(node):
     node.model = node.meme
 
 
+def train_fedprox(node):
+    node.meme.to(node.device).train()
+    train_loader = node.train_data
+    total_loss = 0.0
+    avg_loss = 0.0
+    correct = 0.0
+    acc = 0.0
+    description = "Node{:d}: loss={:.4f} acc={:.2f}%"
+    with tqdm(train_loader) as epochs:
+        for idx, (data, target) in enumerate(epochs):
+            node.meme_optimizer.zero_grad()
+            epochs.set_description(description.format(node.num, avg_loss, acc))
+            data, target = data.to(node.device), target.to(node.device)
+            output = node.meme(data)
+            loss = CE_Loss(output, target)
+            proximal = 0.0
+            for w_local, w_global in zip(node.meme.parameters(), node.model.parameters()):
+                proximal += (w_local - w_global).norm(2)**2
+            loss = loss + 0.5 * node.args.mu * proximal
+            loss.backward()
+            node.meme_optimizer.step()
+            total_loss += loss
+            avg_loss = total_loss / (idx + 1)
+            pred = output.argmax(dim=1)
+            correct += pred.eq(target.view_as(pred)).sum()
+            acc = correct / len(train_loader.dataset) * 100
+
+
 def train_mutual(node):
     node.model.to(node.device).train()
     node.meme.to(node.device).train()
@@ -97,6 +125,8 @@ class Trainer(object):
     def __init__(self, args):
         if args.algorithm == 'fed_mutual':
             self.train = train_mutual
+        elif args.algorithm == 'fed_prox':
+            self.train = train_fedprox
         elif args.algorithm == 'fed_avg':
             self.train = train_avg
         elif args.algorithm == 'normal':

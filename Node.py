@@ -49,6 +49,8 @@ class Node(object):
         self.meme_optimizer = init_optimizer(self.meme, self.args)
 
     def fork(self, global_node):
+        self.model = copy.deepcopy(global_node.model).to(self.device)
+        self.optimizer = init_optimizer(self.model, self.args)
         self.meme = copy.deepcopy(global_node.model).to(self.device)
         self.meme_optimizer = init_optimizer(self.meme, self.args)
 

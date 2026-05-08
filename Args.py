@@ -6,7 +6,9 @@ def args_parser():
 
     # Total
     parser.add_argument('--algorithm', type=str, default='fed_avg',
-                        help='Type of algorithms:{fed_mutual, fed_avg, normal}')
+                        help='Type of algorithms:{fed_mutual, fed_avg, fed_prox, normal}')
+    parser.add_argument('--mu', type=float, default=0.01,
+                        help='FedProx proximal term weight')
     parser.add_argument('--device', type=str, default='cuda:0',
                         help='device: {cuda, cpu}')
     parser.add_argument('--node_num', type=int, default=5,
