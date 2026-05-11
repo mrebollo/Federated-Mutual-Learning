@@ -1,9 +1,11 @@
 import torch
 import os.path
-from torchvision.datasets import utils, MNIST, CIFAR10
+from torchvision.datasets import utils, MNIST, CIFAR10, CIFAR100
 from torchvision import transforms
 from torch.utils.data import Subset, DataLoader
 from PIL import Image
+
+from Partitions import partition_train_indices
 
 
 class FEMNIST(MNIST):
@@ -66,26 +68,51 @@ class FEMNIST(MNIST):
         shutil.move(os.path.join(self.raw_folder, self.test_file), self.processed_folder)
 
 
+def build_loader(dataset, batch_size, ratio, seed=13):
+    if ratio >= 1.0:
+        return DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=0)
+
+    num_samples = max(1, int(len(dataset) * ratio))
+    generator = torch.Generator()
+    generator.manual_seed(seed)
+    indices = torch.randperm(len(dataset), generator=generator)[:num_samples]
+    return DataLoader(Subset(dataset, indices), batch_size=batch_size, shuffle=False, num_workers=0)
+
+
 def Dataset(args):
     trainset, testset = None, None
     print("Loading dataset {}...".format(args.dataset))
     print("Download: {}".format(args.download))
 
-    if args.dataset == 'cifar10':
+    if args.dataset in ('cifar10', 'cifar100'):
+        if args.dataset == 'cifar10':
+            mean = (0.4914, 0.4822, 0.4465)
+            std = (0.2023, 0.1994, 0.2010)
+            args.classes = 10
+        else:
+            mean = (0.5071, 0.4867, 0.4408)
+            std = (0.2675, 0.2565, 0.2761)
+            args.classes = 100
+
         tra_trans = transforms.Compose([
             transforms.RandomCrop(32, padding=4),
             transforms.RandomHorizontalFlip(),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
             transforms.ToTensor(),
-            transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+            transforms.Normalize(mean, std),
         ])
         val_trans = transforms.Compose([
             transforms.ToTensor(),
-            transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+            transforms.Normalize(mean, std),
         ])
-        trainset = CIFAR10(root="~/data", train=True, download=args.download, transform=tra_trans)
-        testset = CIFAR10(root="~/data", train=False, download=args.download, transform=val_trans)
+        if args.dataset == 'cifar10':
+            trainset = CIFAR10(root="~/data", train=True, download=args.download, transform=tra_trans)
+            testset = CIFAR10(root="~/data", train=False, download=args.download, transform=val_trans)
+        elif args.dataset == 'cifar100':
+            trainset = CIFAR100(root="~/data", train=True, download=args.download, transform=tra_trans)
+            testset = CIFAR100(root="~/data", train=False, download=args.download, transform=val_trans)
 
-    if args.dataset == 'femnist' or 'mnist':
+    elif args.dataset in ('femnist', 'mnist'):
         tra_trans = transforms.Compose([
             transforms.Pad(2, padding_mode='edge'),
             transforms.ToTensor(),
@@ -112,19 +139,17 @@ class Data(object):
         self.args = args
         self.trainset, self.testset = None, None
         trainset, testset = Dataset(args)
-        num_train = [int(len(trainset) / args.split) for _ in range(args.split)]
-        cumsum_train = torch.tensor(list(num_train)).cumsum(dim=0).tolist()
-        # idx_train = sorted(range(len(trainset.targets)), key=lambda k: trainset.targets[k])  #split by class
-        idx_train = range(len(trainset.targets))
-        splited_trainset = [Subset(trainset, idx_train[off - l:off]) for off, l in zip(cumsum_train, num_train)]
-        num_test = [int(len(testset) / args.split) for _ in range(args.split)]
-        cumsum_test = torch.tensor(list(num_test)).cumsum(dim=0).tolist()
-        # idx_train = sorted(range(len(trainset.targets)), key=lambda k: trainset.targets[k])  #split by class
-        idx_test = range(len(testset.targets))
-        splited_testset = [Subset(testset, idx_test[off - l:off]) for off, l in zip(cumsum_test, num_test)]
-        self.test_all = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=0)
-        self.train_loader = [DataLoader(splited_trainset[i], batch_size=args.batchsize, shuffle=True, num_workers=0)
-                             for i in range(args.node_num)]
-        self.test_loader = [DataLoader(splited_testset[i], batch_size=args.batchsize, shuffle=False, num_workers=0)
-                            for i in range(args.node_num)]
-        self.test_loader = DataLoader(testset, batch_size=args.batchsize, shuffle=False, num_workers=0)
+        self.trainset, self.testset = trainset, testset
+
+        train_indices = partition_train_indices(
+            args.dataset,
+            trainset.targets,
+            args.split,
+            args.iid,
+            seed=13,
+        )
+
+        self.test_all = build_loader(testset, args.batchsize, 1.0)
+        self.train_loader = [DataLoader(Subset(trainset, idx), batch_size=args.batchsize, shuffle=True, num_workers=0)
+                             for idx in train_indices]
+        self.test_loader = build_loader(testset, args.batchsize, args.val_ratio)

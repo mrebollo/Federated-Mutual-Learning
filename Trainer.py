@@ -59,24 +59,23 @@ def train_fedprox(node):
     correct = 0.0
     acc = 0.0
     description = "Node{:d}: loss={:.4f} acc={:.2f}%"
-    with tqdm(train_loader) as epochs:
-        for idx, (data, target) in enumerate(epochs):
-            node.meme_optimizer.zero_grad()
-            epochs.set_description(description.format(node.num, avg_loss, acc))
-            data, target = data.to(node.device), target.to(node.device)
-            output = node.meme(data)
-            loss = CE_Loss(output, target)
-            proximal = 0.0
-            for w_local, w_global in zip(node.meme.parameters(), node.model.parameters()):
-                proximal += (w_local - w_global).norm(2)**2
-            loss = loss + 0.5 * node.args.mu * proximal
-            loss.backward()
-            node.meme_optimizer.step()
-            total_loss += loss
-            avg_loss = total_loss / (idx + 1)
-            pred = output.argmax(dim=1)
-            correct += pred.eq(target.view_as(pred)).sum()
-            acc = correct / len(train_loader.dataset) * 100
+    for idx, (data, target) in enumerate(train_loader):
+        node.meme_optimizer.zero_grad()
+        #epochs.set_description(description.format(node.num, avg_loss, acc))
+        data, target = data.to(node.device), target.to(node.device)
+        output = node.meme(data)
+        loss = CE_Loss(output, target)
+        proximal = 0.0
+        for w_local, w_global in zip(node.meme.parameters(), node.model.parameters()):
+            proximal += (w_local - w_global).norm(2)**2
+        loss = loss + 0.5 * node.args.mu * proximal
+        loss.backward()
+        node.meme_optimizer.step()
+        total_loss += loss
+        avg_loss = total_loss / (idx + 1)
+        pred = output.argmax(dim=1)
+        correct += pred.eq(target.view_as(pred)).sum()
+        acc = correct / len(train_loader.dataset) * 100
 
 
 def train_mutual(node):

@@ -40,6 +40,7 @@ class ResidualBlock(nn.Module):
 class ResNet(nn.Module):
     def __init__(self, residual_block, num_classes=10):
         super(ResNet, self).__init__()
+        self.num_classes = num_classes
         self.inchannel = 64
         self.conv1 = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False),
@@ -50,7 +51,7 @@ class ResNet(nn.Module):
         self.layer2 = self.make_layer(residual_block, 128, 2, stride=2)
         self.layer3 = self.make_layer(residual_block, 256, 2, stride=2)
         self.layer4 = self.make_layer(residual_block, 512, 2, stride=2)
-        self.fc = nn.Linear(512, num_classes)
+        self.fc = nn.Linear(512, self.num_classes)
 
     def make_layer(self, block, channels, num_blocks, stride):
         strides = [stride] + [1] * (num_blocks - 1)  # strides=[1,1]
@@ -72,18 +73,18 @@ class ResNet(nn.Module):
         return out
 
 
-def ResNet18():
-    return ResNet(ResidualBlock)
+def ResNet18(num_classes=10):
+    return ResNet(ResidualBlock, num_classes=num_classes)
 
 
 class LeNet5(nn.Module):
-    def __init__(self):
+    def __init__(self, num_classes=10):
         super(LeNet5, self).__init__()
         self.conv1 = nn.Conv2d(3, 6, 5)
         self.conv2 = nn.Conv2d(6, 16, 5)
         self.fc1 = nn.Linear(16 * 5 * 5, 120)
         self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
+        self.fc3 = nn.Linear(84, num_classes)
 
     def forward(self, x):
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
@@ -96,11 +97,11 @@ class LeNet5(nn.Module):
 
 
 class MLP(nn.Module):
-    def __init__(self):
+    def __init__(self, num_classes=10):
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(3 * 32 * 32, 200)
         self.fc2 = nn.Linear(200, 200)
-        self.fc3 = nn.Linear(200, 10)
+        self.fc3 = nn.Linear(200, num_classes)
 
     def forward(self, x):
         x = x.view(-1, 3 * 32 * 32)
@@ -111,14 +112,14 @@ class MLP(nn.Module):
 
 
 class CNN(nn.Module):
-    def __init__(self):
+    def __init__(self, num_classes=10):
         super(CNN, self).__init__()
         self.conv1 = nn.Conv2d(3, 32, 3)
         self.pool = nn.MaxPool2d(2, 2)
         self.conv2 = nn.Conv2d(32, 64, 3)
         self.conv3 = nn.Conv2d(64, 64, 3)
         self.fc1 = nn.Linear(64 * 4 * 4, 64)
-        self.fc2 = nn.Linear(64, 10)
+        self.fc2 = nn.Linear(64, num_classes)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
@@ -133,13 +134,13 @@ class CNN(nn.Module):
 class CNN1(nn.Module):
     """Equivalent to CNN1Agent in pref_macofl (6->16 conv, FC1 configurable)."""
 
-    def __init__(self):
+    def __init__(self, num_classes=10):
         super(CNN1, self).__init__()
         self.conv1 = nn.Conv2d(3, 6, 3)
         self.pool = nn.MaxPool2d(2, 2)
         self.conv2 = nn.Conv2d(6, 16, 3)
         self.fc1 = nn.Linear(16 * 6 * 6, 120)
-        self.fc2 = nn.Linear(120, 10)
+        self.fc2 = nn.Linear(120, num_classes)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
@@ -153,13 +154,13 @@ class CNN1(nn.Module):
 class CNN2(nn.Module):
     """Equivalent to CNN2Agent in pref_macofl (128->128->128 conv, 1 FC output)."""
 
-    def __init__(self):
+    def __init__(self, num_classes=10):
         super(CNN2, self).__init__()
         self.conv1 = nn.Conv2d(3, 128, 3)
         self.pool = nn.MaxPool2d(2, 2)
         self.conv2 = nn.Conv2d(128, 128, 3)
         self.conv3 = nn.Conv2d(128, 128, 3)
-        self.fc = nn.Linear(128 * 2 * 2, 10)
+        self.fc = nn.Linear(128 * 2 * 2, num_classes)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))

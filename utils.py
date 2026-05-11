@@ -18,16 +18,17 @@ class Recorder(object):
         self.acc_best = torch.zeros(self.args.node_num + 1)
         self.get_a_better = torch.zeros(self.args.node_num + 1)
 
-    def validate(self, node):
+    def validate(self, node, use_meme=False):
         self.counter += 1
-        node.model.to(node.device).eval()
+        model = node.meme if use_meme and hasattr(node, 'meme') else node.model
+        model.to(node.device).eval()
         total_loss = 0.0
         correct = 0.0
 
         with torch.no_grad():
             for idx, (data, target) in enumerate(node.test_data):
                 data, target = data.to(node.device), target.to(node.device)
-                output = node.model(data)
+                output = model(data)
                 total_loss += torch.nn.CrossEntropyLoss()(output, target)
                 pred = output.argmax(dim=1)
                 correct += pred.eq(target.view_as(pred)).sum().item()
@@ -39,8 +40,9 @@ class Recorder(object):
         if self.val_acc[str(node.num)][-1] > self.acc_best[node.num]:
             self.get_a_better[node.num] = 1
             self.acc_best[node.num] = self.val_acc[str(node.num)][-1]
-            # torch.save(node.model.state_dict(),
+            # torch.save(model.state_dict(),
             #            './saves/model/Node{:d}_{:s}.pt'.format(node.num, node.args.local_model))
+        return total_loss, acc
 
     def printer(self, node):
         if self.get_a_better[node.num] == 1:
@@ -60,14 +62,14 @@ def Catfish(Node_List, args):
     if args.catfish is None:
         pass
     else:
-        Node_List[0].model = Node.init_model(args.catfish)
+        Node_List[0].model = Node.init_model(args.catfish, num_classes=args.classes)
         Node_List[0].optimizer = Node.init_optimizer(Node_List[0].model, args)
 
 
 def LR_scheduler(rounds, Node_List, args):
     trigger = int(args.R / 3)
     if rounds != 0 and rounds % trigger == 0 and rounds < args.stop_decay:
-        args.lr *= 0.1
+        args.lr /= args.lr_step
         # args.alpha += 0.2
         # args.beta += 0.4
         for i in range(len(Node_List)):

@@ -19,6 +19,8 @@ def args_parser():
                         help='Number of local epochs: E')
     parser.add_argument('--notes', type=str, default='',
                         help='Notes of Experiments')
+    parser.add_argument('--jid', type=int, default=0,
+                        help='Job or experiment ID for results output')
 
     # Model
     parser.add_argument('--global_model', type=str, default='CNN1',
@@ -37,8 +39,10 @@ def args_parser():
                         help='batchsize')
     parser.add_argument('--split', type=int, default=5,
                         help='data split')
-    parser.add_argument('--val_ratio', type=float, default=0.1,
-                        help='val_ratio')
+    parser.add_argument('--iid', type=int, default=0,
+                        help='IID level: 0=iid, 1-3=non-iid')
+    parser.add_argument('--val_ratio', type=float, default=1.0,
+                        help='Validation ratio for intermediate evaluation (0.0-1.0, default 1.0)')
     parser.add_argument('--all_data', type=bool, default=True,
                         help='use all train_set')
     parser.add_argument('--classes', type=int, default=10,

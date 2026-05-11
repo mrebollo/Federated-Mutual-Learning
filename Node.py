@@ -3,20 +3,20 @@ import torch
 import Model
 
 
-def init_model(model_type):
+def init_model(model_type, num_classes=10):
     model = []
     if model_type == 'LeNet5':
-        model = Model.LeNet5()
+        model = Model.LeNet5(num_classes=num_classes)
     elif model_type == 'MLP':
-        model = Model.MLP()
+        model = Model.MLP(num_classes=num_classes)
     elif model_type == 'ResNet18':
-        model = Model.ResNet18()
+        model = Model.ResNet18(num_classes=num_classes)
     elif model_type == 'CNN':
-        model = Model.CNN()
+        model = Model.CNN(num_classes=num_classes)
     elif model_type == 'CNN1':
-        model = Model.CNN1()
+        model = Model.CNN1(num_classes=num_classes)
     elif model_type == 'CNN2':
-        model = Model.CNN2()
+        model = Model.CNN2(num_classes=num_classes)
     return model
 
 
@@ -43,9 +43,9 @@ class Node(object):
         self.device = self.args.device
         self.train_data = train_data
         self.test_data = test_data
-        self.model = init_model(self.args.local_model).to(self.device)
+        self.model = init_model(self.args.local_model, num_classes=self.args.classes).to(self.device)
         self.optimizer = init_optimizer(self.model, self.args)
-        self.meme = init_model(self.args.global_model).to(self.device)
+        self.meme = init_model(self.args.global_model, num_classes=self.args.classes).to(self.device)
         self.meme_optimizer = init_optimizer(self.meme, self.args)
 
     def fork(self, global_node):
@@ -60,7 +60,7 @@ class Global_Node(object):
         self.num = 0
         self.args = args
         self.device = self.args.device
-        self.model = init_model(self.args.global_model).to(self.device)
+        self.model = init_model(self.args.global_model, num_classes=self.args.classes).to(self.device)
         self.test_data = test_data
         self.Dict = self.model.state_dict()
 
