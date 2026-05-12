@@ -4,12 +4,11 @@ import argparse
 def combine(start_id=1, output='config.txt'):
     dataset_models = {
         'mnist': ['MLP', 'LeNet5'],
-        'femnist': ['MLP', 'LeNet5'],
         'cifar10': ['CNN1', 'CNN2'],
         'cifar100': ['CNN1', 'CNN2'],
     }
     partitions = [0, 1, 2, 3]
-    algorithms = ['fed_avg', 'fed_prox', 'fed_mutual', 'normal']
+    algorithms = ['fed_avg', 'fed_prox', 'fed_mutual']
 
     with open(output, 'w') as f:
         f.write('ArrayTaskID\tdataset\tpartition\tmodel\talgorithm\n')
