@@ -19,16 +19,14 @@ def args_parser():
                         help='Number of local epochs: E')
     parser.add_argument('--notes', type=str, default='',
                         help='Notes of Experiments')
-    parser.add_argument('--jid', type=int, default=0,
-                        help='Job or experiment ID for results output')
 
     # Model
     parser.add_argument('--global_model', type=str, default='CNN1',
-                        help='Type of global model: {LeNet5, MLP, CNN2, ResNet18}')
+                        help='Type of global model: {LeNet5, MLP, CNN1, CNN2, ResNet18}')
     parser.add_argument('--local_model', type=str, default='CNN1',
-                        help='Type of local model: {LeNet5, MLP, CNN2, ResNet18}')
+                        help='Type of local model: {LeNet5, MLP, CNN1, CNN2, ResNet18}')
     parser.add_argument('--catfish', type=str, default=None,
-                        help='Type of local model: {None, LeNet5, MLP, CNN2, ResNet18}')
+                        help='Type of local model: {None, LeNet5, MLP, CNN1, CNN2, ResNet18}')
 
     # Data
     parser.add_argument('--dataset', type=str, default='cifar10',

@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 DEFAULT_RESULTS_HEADER = [
-    'job_id', 'dataset', 'model', 'net', 'size', 'iid', 'alg',
+    'dataset', 'model', 'net', 'size', 'iid', 'alg',
     'rep', 'round', 'agent', 'acc', 'loss', 'err', 'nmsg', 'msiz'
 ]
 
@@ -15,7 +15,6 @@ class ResultsWriter:
         self.filename = Path(filename or 'results.csv')
         self.fieldnames = DEFAULT_RESULTS_HEADER
         self._ensure_file()
-        self.job_id = getattr(args, 'jid', 0)
 
     def _ensure_file(self):
         self.filename.parent.mkdir(parents=True, exist_ok=True)
@@ -39,7 +38,6 @@ class ResultsWriter:
     def _make_agent_row(self, agent_id, round_idx, loss, acc):
         args = self.args
         base_row = {
-            'job_id': self.job_id,
             'dataset': getattr(args, 'dataset', ''),
             'model': getattr(args, 'local_model', ''),
             'net': 'none',

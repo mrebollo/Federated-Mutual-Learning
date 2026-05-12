@@ -1,0 +1,7 @@
+ArrayTaskID	dataset	partition	model	algorithm
+1	cifar10	0	CNN1	fed_avg
+2	cifar10	1	CNN2	fed_avg
+3	cifar100	0	CNN1	fed_avg
+4	cifar100	1	CNN2	fed_avg
+5	mnist	0	MLP	fed_avg
+6	mnist	1	LeNet5	fed_avg
