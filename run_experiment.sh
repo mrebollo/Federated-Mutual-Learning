@@ -7,7 +7,11 @@
 #SBATCH --mail-user=your.email@example.com
 
 config=${1:-config.txt}
-base_dir=$(cd "$(dirname "$0")" && pwd)
+base_dir=${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}
+
+if [[ "$config" != /* ]]; then
+  config="$base_dir/$config"
+fi
 
 if [ ! -f "$config" ]; then
   echo "Error: config file '$config' not found"
@@ -18,6 +22,7 @@ ROUNDS=50
 EPOCHS=5
 BATCHSIZE=128
 REPS=1
+NODE_NUM=5
 
 ArrayId=$SLURM_ARRAY_TASK_ID
 
@@ -42,7 +47,8 @@ source "$base_dir/.venv/bin/activate"
 
 python "$base_dir/main.py" \
   --dataset "$dataset" \
-  --split "$partition" \
+  --node_num "$NODE_NUM" \
+  --iid "$partition" \
   --local_model "$model" \
   --global_model "$model" \
   --algorithm "$algorithm" \
