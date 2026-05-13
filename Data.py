@@ -114,19 +114,23 @@ def Dataset(args):
 
     elif args.dataset in ('femnist', 'mnist'):
         tra_trans = transforms.Compose([
+            transforms.Grayscale(num_output_channels=3),
             transforms.Pad(2, padding_mode='edge'),
             transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,)),
+            transforms.Normalize((0.1307, 0.1307, 0.1307),
+                                 (0.3081, 0.3081, 0.3081)),
         ])
         val_trans = transforms.Compose([
+            transforms.Grayscale(num_output_channels=3),
             transforms.Pad(2, padding_mode='edge'),
             transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,)),
+            transforms.Normalize((0.1307, 0.1307, 0.1307),
+                                 (0.3081, 0.3081, 0.3081)),
         ])
         if args.dataset == 'femnist':
             trainset = FEMNIST(root='~/data', train=True, download=args.download, transform=tra_trans)
             testset = FEMNIST(root='~/data', train=False, download=args.download, transform=val_trans)
-        if args.dataset == 'mnist':
+        elif args.dataset == 'mnist':
             trainset = MNIST(root='~/data', train=True, download=args.download, transform=tra_trans)
             testset = MNIST(root='~/data', train=False, download=args.download, transform=val_trans)
 
