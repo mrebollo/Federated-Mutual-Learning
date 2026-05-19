@@ -1,0 +1,143 @@
+/data/mrebollo@upvnet.upv.es/fml/.venv/lib/python3.14/site-packages/torch/cuda/__init__.py:180: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 12000). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+Running on cpu
+Loading dataset mnist...
+Download: False
+Summary：
+
+algorithm:fed_avg
+
+dataset:mnist	batchsize:128
+
+node_num:5,	split:5
+
+global epochs:50,	local epochs:5,
+
+global_model:MLP，	local model:MLP,
+
+Rounds:   0%|          | 0/50 [00:00<?, ?it/s]Rounds:   2%|▏         | 1/50 [04:34<3:44:00, 274.30s/it]Rounds:   4%|▍         | 2/50 [09:08<3:39:31, 274.40s/it]Rounds:   6%|▌         | 3/50 [13:43<3:34:56, 274.40s/it]Rounds:   8%|▊         | 4/50 [18:17<3:30:21, 274.37s/it]Rounds:  10%|█         | 5/50 [22:52<3:25:49, 274.42s/it]Rounds:  12%|█▏        | 6/50 [27:26<3:21:11, 274.36s/it]Rounds:  14%|█▍        | 7/50 [32:00<3:16:41, 274.46s/it]Rounds:  16%|█▌        | 8/50 [36:35<3:12:09, 274.52s/it]Rounds:  18%|█▊        | 9/50 [41:15<3:08:49, 276.32s/it]Rounds:  20%|██        | 10/50 [45:51<3:04:05, 276.15s/it]Rounds:  22%|██▏       | 11/50 [50:25<2:59:07, 275.57s/it]Rounds:  24%|██▍       | 12/50 [55:00<2:54:19, 275.24s/it]Rounds:  26%|██▌       | 13/50 [59:34<2:49:32, 274.93s/it]Rounds:  28%|██▊       | 14/50 [1:04:08<2:44:50, 274.73s/it]Rounds:  30%|███       | 15/50 [1:08:43<2:40:11, 274.62s/it]Rounds:  32%|███▏      | 16/50 [1:13:17<2:35:34, 274.55s/it]Rounds:  34%|███▍      | 17/50 [1:17:51<2:30:58, 274.49s/it]Rounds:  36%|███▌      | 18/50 [1:22:26<2:26:21, 274.42s/it]Rounds:  38%|███▊      | 19/50 [1:27:00<2:21:46, 274.40s/it]Rounds:  40%|████      | 20/50 [1:31:34<2:17:12, 274.40s/it]Rounds:  42%|████▏     | 21/50 [1:36:27<2:15:18, 279.95s/it]Rounds:  44%|████▍     | 22/50 [1:41:02<2:09:51, 278.28s/it]Rounds:  46%|████▌     | 23/50 [1:45:36<2:04:44, 277.20s/it]Rounds:  48%|████▊     | 24/50 [1:50:12<1:59:53, 276.69s/it]Rounds:  50%|█████     | 25/50 [1:54:48<1:55:13, 276.56s/it]Rounds:  52%|█████▏    | 26/50 [1:59:23<1:50:21, 275.90s/it]Rounds:  54%|█████▍    | 27/50 [2:03:57<1:45:37, 275.52s/it]Rounds:  56%|█████▌    | 28/50 [2:08:33<1:41:01, 275.52s/it]Rounds:  58%|█████▊    | 29/50 [2:13:08<1:36:22, 275.33s/it]Rounds:  60%|██████    | 30/50 [2:17:43<1:31:49, 275.49s/it]Rounds:  62%|██████▏   | 31/50 [2:22:18<1:27:07, 275.11s/it]Rounds:  64%|██████▍   | 32/50 [2:26:52<1:22:27, 274.85s/it]Rounds:  66%|██████▌   | 33/50 [2:31:26<1:17:50, 274.75s/it]Rounds:  68%|██████▊   | 34/50 [2:36:01<1:13:12, 274.56s/it]Rounds:  70%|███████   | 35/50 [2:40:35<1:08:37, 274.52s/it]Rounds:  72%|███████▏  | 36/50 [2:45:10<1:04:03, 274.56s/it]Rounds:  74%|███████▍  | 37/50 [2:49:44<59:28, 274.48s/it]  Rounds:  76%|███████▌  | 38/50 [2:54:19<54:54, 274.52s/it]Rounds:  78%|███████▊  | 39/50 [2:58:53<50:20, 274.63s/it]Rounds:  80%|████████  | 40/50 [3:03:28<45:46, 274.61s/it]Rounds:  82%|████████▏ | 41/50 [3:08:03<41:12, 274.76s/it]Rounds:  84%|████████▍ | 42/50 [3:12:41<36:45, 275.74s/it]Rounds:  86%|████████▌ | 43/50 [3:17:16<32:07, 275.35s/it]Rounds:  88%|████████▊ | 44/50 [3:21:50<27:31, 275.23s/it]Rounds:  90%|█████████ | 45/50 [3:26:25<22:55, 275.10s/it]Rounds:  92%|█████████▏| 46/50 [3:31:00<18:20, 275.04s/it]Rounds:  94%|█████████▍| 47/50 [3:35:35<13:44, 274.92s/it]Rounds:  96%|█████████▌| 48/50 [3:40:09<09:09, 274.80s/it]Rounds:  98%|█████████▊| 49/50 [3:44:44<04:34, 274.75s/it]Rounds: 100%|██████████| 50/50 [3:49:19<00:00, 274.72s/it]Rounds: 100%|██████████| 50/50 [3:49:19<00:00, 275.18s/it]
+Learning rate=0.0100
+Round 1: global_loss=0.1501 global_acc=95.32%
+Learning rate=0.0100
+Round 2: global_loss=0.1000 global_acc=96.78%
+Learning rate=0.0100
+Round 3: global_loss=0.0832 global_acc=97.39%
+Learning rate=0.0100
+Round 4: global_loss=0.0747 global_acc=97.70%
+Learning rate=0.0100
+Round 5: global_loss=0.0701 global_acc=97.78%
+Learning rate=0.0100
+Round 6: global_loss=0.0673 global_acc=97.93%
+Learning rate=0.0100
+Round 7: global_loss=0.0655 global_acc=97.96%
+Learning rate=0.0100
+Round 8: global_loss=0.0652 global_acc=97.99%
+Learning rate=0.0100
+Round 9: global_loss=0.0642 global_acc=98.10%
+Learning rate=0.0100
+Round 10: global_loss=0.0641 global_acc=98.06%
+Learning rate=0.0100
+Round 11: global_loss=0.0641 global_acc=98.05%
+Learning rate=0.0100
+Round 12: global_loss=0.0630 global_acc=98.08%
+Learning rate=0.0100
+Round 13: global_loss=0.0626 global_acc=98.07%
+Learning rate=0.0100
+Round 14: global_loss=0.0628 global_acc=98.09%
+Learning rate=0.0100
+Round 15: global_loss=0.0621 global_acc=98.07%
+Learning rate=0.0100
+Round 16: global_loss=0.0617 global_acc=98.11%
+Learning rate=0.0010
+Round 17: global_loss=0.0600 global_acc=98.14%
+Learning rate=0.0010
+Round 18: global_loss=0.0595 global_acc=98.16%
+Learning rate=0.0010
+Round 19: global_loss=0.0594 global_acc=98.15%
+Learning rate=0.0010
+Round 20: global_loss=0.0593 global_acc=98.15%
+Learning rate=0.0010
+Round 21: global_loss=0.0592 global_acc=98.17%
+Learning rate=0.0010
+Round 22: global_loss=0.0592 global_acc=98.17%
+Learning rate=0.0010
+Round 23: global_loss=0.0591 global_acc=98.18%
+Learning rate=0.0010
+Round 24: global_loss=0.0591 global_acc=98.18%
+Learning rate=0.0010
+Round 25: global_loss=0.0591 global_acc=98.19%
+Learning rate=0.0010
+Round 26: global_loss=0.0591 global_acc=98.18%
+Learning rate=0.0010
+Round 27: global_loss=0.0591 global_acc=98.19%
+Learning rate=0.0010
+Round 28: global_loss=0.0591 global_acc=98.19%
+Learning rate=0.0010
+Round 29: global_loss=0.0591 global_acc=98.17%
+Learning rate=0.0010
+Round 30: global_loss=0.0591 global_acc=98.16%
+Learning rate=0.0010
+Round 31: global_loss=0.0591 global_acc=98.18%
+Learning rate=0.0010
+Round 32: global_loss=0.0591 global_acc=98.17%
+Learning rate=0.0001
+Round 33: global_loss=0.0590 global_acc=98.18%
+Learning rate=0.0001
+Round 34: global_loss=0.0589 global_acc=98.18%
+Learning rate=0.0001
+Round 35: global_loss=0.0589 global_acc=98.19%
+Learning rate=0.0001
+Round 36: global_loss=0.0588 global_acc=98.19%
+Learning rate=0.0001
+Round 37: global_loss=0.0588 global_acc=98.19%
+Learning rate=0.0001
+Round 38: global_loss=0.0588 global_acc=98.19%
+Learning rate=0.0001
+Round 39: global_loss=0.0588 global_acc=98.19%
+Learning rate=0.0001
+Round 40: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 41: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 42: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 43: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 44: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 45: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 46: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 47: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0001
+Round 48: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0000
+Round 49: global_loss=0.0587 global_acc=98.20%
+Learning rate=0.0000
+Round 50: global_loss=0.0587 global_acc=98.20%
+Traceback (most recent call last):
+  File "/data/mrebollo@upvnet.upv.es/fml/main.py", line 50, in <module>
+    main()
+    ~~~~^^
+  File "/data/mrebollo@upvnet.upv.es/fml/main.py", line 44, in main
+    recorder.finish()
+    ~~~~~~~~~~~~~~~^^
+  File "/data/mrebollo@upvnet.upv.es/fml/utils.py", line 54, in finish
+    torch.save([self.val_loss, self.val_acc],
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               './saves/record/loss_acc_{:s}_{:s}.pt'.format(self.args.algorithm, self.args.notes))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/mrebollo@upvnet.upv.es/fml/.venv/lib/python3.14/site-packages/torch/serialization.py", line 1003, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/mrebollo@upvnet.upv.es/fml/.venv/lib/python3.14/site-packages/torch/serialization.py", line 865, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+  File "/data/mrebollo@upvnet.upv.es/fml/.venv/lib/python3.14/site-packages/torch/serialization.py", line 829, in __init__
+    torch._C.PyTorchFileWriter(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.name, get_crc32_options(), _get_storage_alignment()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: Parent directory ./saves/record does not exist.
