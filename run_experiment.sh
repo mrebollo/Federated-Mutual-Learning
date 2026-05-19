@@ -3,6 +3,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --gpus-per-task=1
+#SBATCH --output=slurm-%A_%a.out
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=your.email@example.com
 
@@ -42,10 +43,32 @@ NOW=$(date +"%Y%m%d")
 OUTDIR="$base_dir/experiments/$NOW/$NAME"
 mkdir -p "$OUTDIR"
 cd "$OUTDIR"
+mkdir -p ./saves/record
 
-source "$base_dir/.venv/bin/activate"
+# Diagnostics in Slurm output to verify GPU visibility inside the job.
+echo "[fml-runner-v2] Using script: $0"
+echo "[$(date)] Host: $(hostname)"
+echo "[$(date)] SLURM_JOB_ID=${SLURM_JOB_ID} SLURM_ARRAY_TASK_ID=${SLURM_ARRAY_TASK_ID}"
+nvidia-smi || true
 
-python "$base_dir/main.py" \
+if command -v conda >/dev/null 2>&1; then
+  PYTHON_CMD=(conda run --no-capture-output -n fed python)
+else
+  echo "Error: conda not found in PATH"
+  exit 1
+fi
+
+"${PYTHON_CMD[@]}" - <<'PY'
+import sys
+import torch
+print('python', sys.executable)
+print('torch', torch.__version__)
+print('cuda_available', torch.cuda.is_available())
+print('cuda_version', torch.version.cuda)
+print('device_count', torch.cuda.device_count())
+PY
+
+"${PYTHON_CMD[@]}" "$base_dir/main.py" \
   --dataset "$dataset" \
   --node_num "$NODE_NUM" \
   --iid "$partition" \
