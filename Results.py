@@ -1,4 +1,5 @@
 import csv
+import numpy as np
 from pathlib import Path
 from datetime import datetime
 
@@ -6,6 +7,12 @@ from datetime import datetime
 DEFAULT_RESULTS_HEADER = [
     'dataset', 'model', 'net', 'size', 'iid', 'alg',
     'rep', 'round', 'agent', 'acc', 'loss', 'err', 'nmsg', 'msiz'
+]
+
+DEFAULT_TIMING_HEADER = [
+    'dataset', 'iid', 'network', 'model', 'algorithm',
+    'num_rounds', 'num_agents', 'num_iter', 'local_epochs',
+    'time_per_iter_mean', 'time_per_iter_std'
 ]
 
 
@@ -57,3 +64,32 @@ class ResultsWriter:
 
     def finish(self):
         print(f'Results appended to {self.filename.resolve()}')
+
+    def write_timing(self, times):
+        """Write timing statistics to timing_fml.csv"""
+        timing_path = Path('../timing_fml.csv')
+        
+        if not timing_path.exists():
+            with timing_path.open('w', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=DEFAULT_TIMING_HEADER)
+                writer.writeheader()
+        
+        timing_row = {
+            'dataset': getattr(self.args, 'dataset', ''),
+            'iid': getattr(self.args, 'iid', ''),
+            'network': 'none',
+            'model': getattr(self.args, 'local_model', ''),
+            'algorithm': getattr(self.args, 'algorithm', ''),
+            'num_rounds': getattr(self.args, 'R', ''),
+            'num_agents': getattr(self.args, 'node_num', ''),
+            'num_iter': '',
+            'local_epochs': getattr(self.args, 'E', ''),
+            'time_per_iter_mean': float(np.mean(times)),
+            'time_per_iter_std': float(np.std(times))
+        }
+        
+        with timing_path.open('a', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=DEFAULT_TIMING_HEADER)
+            writer.writerow(timing_row)
+        
+        print(f'Timing appended to {timing_path.resolve()}')

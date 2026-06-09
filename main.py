@@ -1,4 +1,6 @@
 import torch
+import time
+import numpy as np
 from tqdm import tqdm
 from Node import Node, Global_Node
 from Args import args_parser
@@ -25,8 +27,10 @@ def main():
     recorder = Recorder(args)
     results = ResultsWriter(args)
     Summary(args)
+    times = []
     # start
     for rounds in tqdm(range(args.R), desc='Rounds'):
+        round_start = time.time()
         LR_scheduler(rounds, Node_List, args)
         for k, node in enumerate(Node_List):
             node.fork(Global_node)
@@ -41,8 +45,10 @@ def main():
             global_loss = global_loss.item()
         global_acc = recorder.val_acc['0'][-1]
         print(f"Round {rounds + 1}: global_loss={global_loss:.4f} global_acc={global_acc:.2f}%")
+        times.append(time.time() - round_start)
     recorder.finish()
     results.finish()
+    results.write_timing(times)
     Summary(args)
 
 
