@@ -4,8 +4,11 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --gpus-per-task=1
 #SBATCH --output=slurm-%A_%a.out
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=your.email@example.com
+#SBATCH --mail-user=mrebollo@upv.es
+#SBATCH --profile=task
+
+# genera el fichero de configuracion
+cd ~/fml
 
 config=${1:-config.txt}
 base_dir=${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}
@@ -19,7 +22,7 @@ if [ ! -f "$config" ]; then
   exit 1
 fi
 
-ROUNDS=50
+ROUNDS=200
 EPOCHS=5
 BATCHSIZE=128
 REPS=1
@@ -37,6 +40,10 @@ if [ -z "$dataset" ] || [ -z "$model" ] || [ -z "$algorithm" ]; then
   exit 1
 fi
 
+# Activa el entorno virtual en el que se ha instalado TensorFlow
+source ~/miniconda3/bin/activate mut 
+
+
 printf -v NUM "%03d" $ArrayId
 NAME="exp_${NUM}"
 NOW=$(date +"%Y%m%d")
@@ -52,7 +59,7 @@ echo "[$(date)] SLURM_JOB_ID=${SLURM_JOB_ID} SLURM_ARRAY_TASK_ID=${SLURM_ARRAY_T
 nvidia-smi || true
 
 if command -v conda >/dev/null 2>&1; then
-  PYTHON_CMD=(conda run --no-capture-output -n fed python)
+  PYTHON_CMD=(conda run --no-capture-output -n mut python)
 else
   echo "Error: conda not found in PATH"
   exit 1
@@ -68,7 +75,8 @@ print('cuda_version', torch.version.cuda)
 print('device_count', torch.cuda.device_count())
 PY
 
-"${PYTHON_CMD[@]}" "$base_dir/main.py" \
+# "${PYTHON_CMD[@]}" 
+python3 $base_dir/main.py \
   --dataset "$dataset" \
   --node_num "$NODE_NUM" \
   --iid "$partition" \
@@ -78,4 +86,5 @@ PY
   --R "$ROUNDS" \
   --E "$EPOCHS" \
   --batchsize "$BATCHSIZE" \
-  --notes "$NAME"
+  --notes "$NAME" \
+  --download True

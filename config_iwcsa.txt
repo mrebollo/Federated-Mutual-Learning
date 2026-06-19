@@ -1,0 +1,4 @@
+ArrayTaskID	dataset	partition	model	algorithm
+1	cifar10	0	CNN1	fed_avg
+2	cifar10	0	CNN1	fed_prox
+3	cifar10	0	CNN1	fed_mutual

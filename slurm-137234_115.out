@@ -1,0 +1,466 @@
+[fml-runner-v2] Using script: /var/spool/slurm/d/job137738/slurm_script
+[mar 16 jun 2026 13:08:42 CEST] Host: vrhpc5.dsic.upv.es
+[mar 16 jun 2026 13:08:42 CEST] SLURM_JOB_ID=137738 SLURM_ARRAY_TASK_ID=115
+Tue Jun 16 13:08:42 2026       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 525.125.06   Driver Version: 525.125.06   CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA A30          On   | 00000000:C3:00.0 Off |                    0 |
+| N/A   26C    P0    27W / 165W |      0MiB / 24576MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+python /data/mrebollo@upvnet.upv.es/miniconda3/envs/mut/bin/python
+torch 2.7.1+cu118
+cuda_available True
+cuda_version 11.8
+device_count 1
+Running on cuda:0
+Loading dataset cifar100...
+Download: True
+Summary：
+
+algorithm:fed_mutual
+
+dataset:cifar100	batchsize:128
+
+node_num:5,	split:5
+
+global epochs:200,	local epochs:5,
+
+global_model:CNN2，	local model:CNN2,
+
+Rounds:   0%|          | 0/200 [00:00<?, ?it/s]Rounds:   0%|          | 1/200 [02:36<8:39:39, 156.68s/it]Rounds:   1%|          | 2/200 [05:12<8:34:25, 155.88s/it]Rounds:   2%|▏         | 3/200 [07:47<8:30:41, 155.54s/it]Rounds:   2%|▏         | 4/200 [10:22<8:27:38, 155.40s/it]Rounds:   2%|▎         | 5/200 [12:57<8:24:31, 155.24s/it]Rounds:   3%|▎         | 6/200 [15:32<8:21:56, 155.24s/it]Rounds:   4%|▎         | 7/200 [18:07<8:19:30, 155.29s/it]Rounds:   4%|▍         | 8/200 [20:43<8:16:55, 155.29s/it]Rounds:   4%|▍         | 9/200 [23:18<8:14:22, 155.30s/it]Rounds:   5%|▌         | 10/200 [25:54<8:12:18, 155.46s/it]Rounds:   6%|▌         | 11/200 [28:30<8:10:04, 155.58s/it]Rounds:   6%|▌         | 12/200 [31:05<8:07:28, 155.58s/it]Rounds:   6%|▋         | 13/200 [33:41<8:04:57, 155.60s/it]Rounds:   7%|▋         | 14/200 [36:17<8:02:21, 155.60s/it]Rounds:   8%|▊         | 15/200 [38:52<7:59:51, 155.63s/it]Rounds:   8%|▊         | 16/200 [41:28<7:57:12, 155.61s/it]Rounds:   8%|▊         | 17/200 [44:04<7:55:04, 155.76s/it]Rounds:   9%|▉         | 18/200 [46:40<7:52:35, 155.80s/it]Rounds:  10%|▉         | 19/200 [49:16<7:50:07, 155.84s/it]Rounds:  10%|█         | 20/200 [51:52<7:47:56, 155.98s/it]Rounds:  10%|█         | 21/200 [54:28<7:45:35, 156.07s/it]Rounds:  11%|█         | 22/200 [57:04<7:42:59, 156.07s/it]Rounds:  12%|█▏        | 23/200 [59:40<7:40:22, 156.06s/it]Rounds:  12%|█▏        | 24/200 [1:02:17<7:37:54, 156.10s/it]Rounds:  12%|█▎        | 25/200 [1:04:53<7:35:21, 156.12s/it]Rounds:  13%|█▎        | 26/200 [1:07:29<7:32:55, 156.18s/it]Rounds:  14%|█▎        | 27/200 [1:10:05<7:30:27, 156.23s/it]Rounds:  14%|█▍        | 28/200 [1:12:42<7:27:58, 156.27s/it]Rounds:  14%|█▍        | 29/200 [1:15:18<7:25:29, 156.31s/it]Rounds:  15%|█▌        | 30/200 [1:17:55<7:22:51, 156.31s/it]Rounds:  16%|█▌        | 31/200 [1:20:31<7:20:24, 156.36s/it]Rounds:  16%|█▌        | 32/200 [1:23:08<7:18:02, 156.44s/it]Rounds:  16%|█▋        | 33/200 [1:25:44<7:15:26, 156.45s/it]Rounds:  17%|█▋        | 34/200 [1:28:21<7:12:55, 156.48s/it]Rounds:  18%|█▊        | 35/200 [1:30:57<7:10:33, 156.57s/it]Rounds:  18%|█▊        | 36/200 [1:33:34<7:08:14, 156.67s/it]Rounds:  18%|█▊        | 37/200 [1:36:11<7:05:45, 156.72s/it]Rounds:  19%|█▉        | 38/200 [1:38:48<7:03:23, 156.81s/it]Rounds:  20%|█▉        | 39/200 [1:41:25<7:00:57, 156.88s/it]Rounds:  20%|██        | 40/200 [1:44:02<6:58:27, 156.92s/it]Rounds:  20%|██        | 41/200 [1:46:39<6:56:01, 156.99s/it]Rounds:  21%|██        | 42/200 [1:49:16<6:53:29, 157.02s/it]Rounds:  22%|██▏       | 43/200 [1:51:54<6:51:02, 157.08s/it]Rounds:  22%|██▏       | 44/200 [1:54:31<6:48:26, 157.09s/it]Rounds:  22%|██▎       | 45/200 [1:57:08<6:45:53, 157.12s/it]Rounds:  23%|██▎       | 46/200 [1:59:45<6:43:19, 157.14s/it]Rounds:  24%|██▎       | 47/200 [2:02:23<6:40:55, 157.23s/it]Rounds:  24%|██▍       | 48/200 [2:05:00<6:38:23, 157.26s/it]Rounds:  24%|██▍       | 49/200 [2:07:37<6:35:55, 157.32s/it]Rounds:  25%|██▌       | 50/200 [2:10:15<6:33:49, 157.53s/it]Rounds:  26%|██▌       | 51/200 [2:12:53<6:31:07, 157.50s/it]Rounds:  26%|██▌       | 52/200 [2:15:30<6:28:32, 157.52s/it]Rounds:  26%|██▋       | 53/200 [2:18:08<6:25:49, 157.48s/it]Rounds:  27%|██▋       | 54/200 [2:20:45<6:23:10, 157.47s/it]Rounds:  28%|██▊       | 55/200 [2:23:23<6:20:35, 157.48s/it]Rounds:  28%|██▊       | 56/200 [2:26:00<6:18:02, 157.52s/it]Rounds:  28%|██▊       | 57/200 [2:28:38<6:15:27, 157.54s/it]Rounds:  29%|██▉       | 58/200 [2:31:16<6:12:52, 157.56s/it]Rounds:  30%|██▉       | 59/200 [2:33:53<6:10:19, 157.59s/it]Rounds:  30%|███       | 60/200 [2:36:31<6:07:40, 157.57s/it]Rounds:  30%|███       | 61/200 [2:39:09<6:05:15, 157.67s/it]Rounds:  31%|███       | 62/200 [2:41:46<6:02:29, 157.60s/it]Rounds:  32%|███▏      | 63/200 [2:44:24<5:59:49, 157.59s/it]Rounds:  32%|███▏      | 64/200 [2:47:01<5:57:18, 157.64s/it]Rounds:  32%|███▎      | 65/200 [2:49:39<5:54:39, 157.62s/it]Rounds:  33%|███▎      | 66/200 [2:52:17<5:52:07, 157.67s/it]Rounds:  34%|███▎      | 67/200 [2:54:55<5:49:35, 157.71s/it]Rounds:  34%|███▍      | 68/200 [2:57:32<5:47:01, 157.74s/it]Rounds:  34%|███▍      | 69/200 [3:00:10<5:44:21, 157.72s/it]Rounds:  35%|███▌      | 70/200 [3:02:48<5:41:44, 157.73s/it]Rounds:  36%|███▌      | 71/200 [3:05:25<5:39:05, 157.71s/it]Rounds:  36%|███▌      | 72/200 [3:08:03<5:36:31, 157.75s/it]Rounds:  36%|███▋      | 73/200 [3:10:41<5:33:50, 157.72s/it]Rounds:  37%|███▋      | 74/200 [3:13:19<5:31:07, 157.68s/it]Rounds:  38%|███▊      | 75/200 [3:15:56<5:28:29, 157.67s/it]Rounds:  38%|███▊      | 76/200 [3:18:34<5:25:52, 157.68s/it]Rounds:  38%|███▊      | 77/200 [3:21:12<5:23:21, 157.74s/it]Rounds:  39%|███▉      | 78/200 [3:23:50<5:20:49, 157.78s/it]Rounds:  40%|███▉      | 79/200 [3:26:28<5:18:15, 157.82s/it]Rounds:  40%|████      | 80/200 [3:29:05<5:15:41, 157.85s/it]Rounds:  40%|████      | 81/200 [3:31:43<5:13:08, 157.88s/it]Rounds:  41%|████      | 82/200 [3:34:21<5:10:25, 157.85s/it]Rounds:  42%|████▏     | 83/200 [3:36:59<5:07:45, 157.83s/it]Rounds:  42%|████▏     | 84/200 [3:39:37<5:05:09, 157.84s/it]Rounds:  42%|████▎     | 85/200 [3:42:15<5:02:29, 157.82s/it]Rounds:  43%|████▎     | 86/200 [3:44:53<4:59:53, 157.84s/it]Rounds:  44%|████▎     | 87/200 [3:47:30<4:57:15, 157.84s/it]Rounds:  44%|████▍     | 88/200 [3:50:08<4:54:40, 157.86s/it]Rounds:  44%|████▍     | 89/200 [3:52:47<4:52:16, 157.99s/it]Rounds:  45%|████▌     | 90/200 [3:55:25<4:49:48, 158.07s/it]Rounds:  46%|████▌     | 91/200 [3:58:03<4:47:10, 158.08s/it]Rounds:  46%|████▌     | 92/200 [4:00:41<4:44:26, 158.02s/it]Rounds:  46%|████▋     | 93/200 [4:03:19<4:41:48, 158.02s/it]Rounds:  47%|████▋     | 94/200 [4:05:57<4:39:12, 158.04s/it]Rounds:  48%|████▊     | 95/200 [4:08:35<4:36:35, 158.05s/it]Rounds:  48%|████▊     | 96/200 [4:11:13<4:33:55, 158.03s/it]Rounds:  48%|████▊     | 97/200 [4:13:51<4:31:18, 158.04s/it]Rounds:  49%|████▉     | 98/200 [4:16:29<4:28:43, 158.07s/it]Rounds:  50%|████▉     | 99/200 [4:19:08<4:26:13, 158.16s/it]Rounds:  50%|█████     | 100/200 [4:21:46<4:23:44, 158.24s/it]Rounds:  50%|█████     | 101/200 [4:24:24<4:21:11, 158.30s/it]Rounds:  51%|█████     | 102/200 [4:27:03<4:18:35, 158.33s/it]Rounds:  52%|█████▏    | 103/200 [4:29:41<4:15:57, 158.33s/it]Rounds:  52%|█████▏    | 104/200 [4:32:20<4:13:23, 158.37s/it]Rounds:  52%|█████▎    | 105/200 [4:34:58<4:10:44, 158.36s/it]Rounds:  53%|█████▎    | 106/200 [4:37:36<4:08:08, 158.39s/it]Rounds:  54%|█████▎    | 107/200 [4:40:15<4:05:31, 158.41s/it]Rounds:  54%|█████▍    | 108/200 [4:42:53<4:02:53, 158.41s/it]Rounds:  55%|█████▍    | 109/200 [4:45:32<4:00:18, 158.45s/it]Rounds:  55%|█████▌    | 110/200 [4:48:10<3:57:43, 158.49s/it]Rounds:  56%|█████▌    | 111/200 [4:50:49<3:55:09, 158.53s/it]Rounds:  56%|█████▌    | 112/200 [4:53:28<3:52:29, 158.52s/it]Rounds:  56%|█████▋    | 113/200 [4:56:06<3:49:50, 158.52s/it]Rounds:  57%|█████▋    | 114/200 [4:58:44<3:47:07, 158.46s/it]Rounds:  57%|█████▊    | 115/200 [5:01:23<3:44:26, 158.43s/it]Rounds:  58%|█████▊    | 116/200 [5:04:01<3:41:50, 158.46s/it]Rounds:  58%|█████▊    | 117/200 [5:06:40<3:39:11, 158.45s/it]Rounds:  59%|█████▉    | 118/200 [5:09:18<3:36:36, 158.49s/it]Rounds:  60%|█████▉    | 119/200 [5:11:56<3:33:51, 158.41s/it]Rounds:  60%|██████    | 120/200 [5:14:35<3:31:09, 158.37s/it]Rounds:  60%|██████    | 121/200 [5:17:13<3:28:30, 158.36s/it]Rounds:  61%|██████    | 122/200 [5:19:52<3:26:06, 158.54s/it]Rounds:  62%|██████▏   | 123/200 [5:22:30<3:23:21, 158.46s/it]Rounds:  62%|██████▏   | 124/200 [5:25:09<3:20:38, 158.41s/it]Rounds:  62%|██████▎   | 125/200 [5:27:47<3:18:01, 158.42s/it]Rounds:  63%|██████▎   | 126/200 [5:30:25<3:15:20, 158.39s/it]Rounds:  64%|██████▎   | 127/200 [5:33:04<3:12:43, 158.40s/it]Rounds:  64%|██████▍   | 128/200 [5:35:42<3:10:02, 158.37s/it]Rounds:  64%|██████▍   | 129/200 [5:38:20<3:07:23, 158.36s/it]Rounds:  65%|██████▌   | 130/200 [5:40:59<3:04:45, 158.37s/it]Rounds:  66%|██████▌   | 131/200 [5:43:37<3:02:07, 158.37s/it]Rounds:  66%|██████▌   | 132/200 [5:46:16<2:59:28, 158.35s/it]Rounds:  66%|██████▋   | 133/200 [5:48:54<2:56:49, 158.35s/it]Rounds:  67%|██████▋   | 134/200 [5:51:32<2:54:10, 158.35s/it]Rounds:  68%|██████▊   | 135/200 [5:54:11<2:51:32, 158.34s/it]Rounds:  68%|██████▊   | 136/200 [5:56:49<2:48:53, 158.33s/it]Rounds:  68%|██████▊   | 137/200 [5:59:27<2:46:15, 158.35s/it]Rounds:  69%|██████▉   | 138/200 [6:02:06<2:43:38, 158.36s/it]Rounds:  70%|██████▉   | 139/200 [6:04:44<2:40:56, 158.30s/it]Rounds:  70%|███████   | 140/200 [6:07:22<2:38:17, 158.30s/it]Rounds:  70%|███████   | 141/200 [6:10:00<2:35:40, 158.32s/it]Rounds:  71%|███████   | 142/200 [6:12:39<2:33:02, 158.32s/it]Rounds:  72%|███████▏  | 143/200 [6:15:17<2:30:24, 158.32s/it]Rounds:  72%|███████▏  | 144/200 [6:17:56<2:27:47, 158.36s/it]Rounds:  72%|███████▎  | 145/200 [6:20:34<2:25:12, 158.40s/it]Rounds:  73%|███████▎  | 146/200 [6:23:12<2:22:32, 158.39s/it]Rounds:  74%|███████▎  | 147/200 [6:25:51<2:19:54, 158.38s/it]Rounds:  74%|███████▍  | 148/200 [6:28:29<2:17:14, 158.36s/it]Rounds:  74%|███████▍  | 149/200 [6:31:08<2:14:37, 158.38s/it]Rounds:  75%|███████▌  | 150/200 [6:33:46<2:12:00, 158.41s/it]Rounds:  76%|███████▌  | 151/200 [6:36:25<2:09:23, 158.45s/it]Rounds:  76%|███████▌  | 152/200 [6:39:03<2:06:45, 158.46s/it]Rounds:  76%|███████▋  | 153/200 [6:41:41<2:04:06, 158.43s/it]Rounds:  77%|███████▋  | 154/200 [6:44:20<2:01:28, 158.44s/it]Rounds:  78%|███████▊  | 155/200 [6:46:58<1:58:48, 158.41s/it]Rounds:  78%|███████▊  | 156/200 [6:49:37<1:56:10, 158.42s/it]Rounds:  78%|███████▊  | 157/200 [6:52:15<1:53:31, 158.41s/it]Rounds:  79%|███████▉  | 158/200 [6:54:53<1:50:52, 158.39s/it]Rounds:  80%|███████▉  | 159/200 [6:57:32<1:48:13, 158.39s/it]Rounds:  80%|████████  | 160/200 [7:00:10<1:45:36, 158.41s/it]Rounds:  80%|████████  | 161/200 [7:02:49<1:42:57, 158.41s/it]Rounds:  81%|████████  | 162/200 [7:05:27<1:40:19, 158.41s/it]Rounds:  82%|████████▏ | 163/200 [7:08:06<1:37:42, 158.45s/it]Rounds:  82%|████████▏ | 164/200 [7:10:44<1:35:05, 158.49s/it]Rounds:  82%|████████▎ | 165/200 [7:13:23<1:32:29, 158.56s/it]Rounds:  83%|████████▎ | 166/200 [7:16:01<1:29:50, 158.54s/it]Rounds:  84%|████████▎ | 167/200 [7:18:40<1:27:12, 158.57s/it]Rounds:  84%|████████▍ | 168/200 [7:21:18<1:24:33, 158.55s/it]Rounds:  84%|████████▍ | 169/200 [7:23:57<1:21:54, 158.55s/it]Rounds:  85%|████████▌ | 170/200 [7:26:36<1:19:16, 158.53s/it]Rounds:  86%|████████▌ | 171/200 [7:29:14<1:16:36, 158.49s/it]Rounds:  86%|████████▌ | 172/200 [7:31:52<1:13:57, 158.47s/it]Rounds:  86%|████████▋ | 173/200 [7:34:31<1:11:18, 158.45s/it]Rounds:  87%|████████▋ | 174/200 [7:37:09<1:08:40, 158.48s/it]Rounds:  88%|████████▊ | 175/200 [7:39:48<1:06:02, 158.51s/it]Rounds:  88%|████████▊ | 176/200 [7:42:26<1:03:24, 158.52s/it]Rounds:  88%|████████▊ | 177/200 [7:45:05<1:00:47, 158.58s/it]Rounds:  89%|████████▉ | 178/200 [7:47:44<58:10, 158.67s/it]  Rounds:  90%|████████▉ | 179/200 [7:50:23<55:32, 158.69s/it]Rounds:  90%|█████████ | 180/200 [7:53:02<52:57, 158.87s/it]Rounds:  90%|█████████ | 181/200 [7:55:41<50:16, 158.78s/it]Rounds:  91%|█████████ | 182/200 [7:58:19<47:37, 158.73s/it]Rounds:  92%|█████████▏| 183/200 [8:00:58<44:57, 158.66s/it]Rounds:  92%|█████████▏| 184/200 [8:03:36<42:17, 158.61s/it]Rounds:  92%|█████████▎| 185/200 [8:06:15<39:38, 158.60s/it]Rounds:  93%|█████████▎| 186/200 [8:08:53<36:59, 158.57s/it]Rounds:  94%|█████████▎| 187/200 [8:11:32<34:21, 158.55s/it]Rounds:  94%|█████████▍| 188/200 [8:14:10<31:42, 158.56s/it]Rounds:  94%|█████████▍| 189/200 [8:16:49<29:04, 158.56s/it]Rounds:  95%|█████████▌| 190/200 [8:19:28<26:25, 158.58s/it]Rounds:  96%|█████████▌| 191/200 [8:22:06<23:47, 158.59s/it]Rounds:  96%|█████████▌| 192/200 [8:24:45<21:08, 158.58s/it]Rounds:  96%|█████████▋| 193/200 [8:27:23<18:30, 158.57s/it]Rounds:  97%|█████████▋| 194/200 [8:30:02<15:52, 158.73s/it]Rounds:  98%|█████████▊| 195/200 [8:32:41<13:13, 158.67s/it]Rounds:  98%|█████████▊| 196/200 [8:35:20<10:34, 158.66s/it]Rounds:  98%|█████████▊| 197/200 [8:37:58<07:56, 158.69s/it]Rounds:  99%|█████████▉| 198/200 [8:40:38<05:17, 158.86s/it]Rounds: 100%|█████████▉| 199/200 [8:43:17<02:38, 158.93s/it]Rounds: 100%|██████████| 200/200 [8:45:56<00:00, 159.05s/it]Rounds: 100%|██████████| 200/200 [8:45:56<00:00, 157.78s/it]
+Learning rate=0.0100
+Round 1: global_loss=3.9649 global_acc=10.51%
+Learning rate=0.0100
+Round 2: global_loss=3.5522 global_acc=17.84%
+Learning rate=0.0100
+Round 3: global_loss=3.2759 global_acc=22.03%
+Learning rate=0.0100
+Round 4: global_loss=3.0806 global_acc=26.33%
+Learning rate=0.0100
+Round 5: global_loss=2.9172 global_acc=29.55%
+Learning rate=0.0100
+Round 6: global_loss=2.8009 global_acc=31.85%
+Learning rate=0.0100
+Round 7: global_loss=2.6762 global_acc=34.26%
+Learning rate=0.0100
+Round 8: global_loss=2.5658 global_acc=36.53%
+Learning rate=0.0100
+Round 9: global_loss=2.4913 global_acc=37.73%
+Learning rate=0.0100
+Round 10: global_loss=2.4215 global_acc=39.11%
+Learning rate=0.0100
+Round 11: global_loss=2.3449 global_acc=40.95%
+Learning rate=0.0100
+Round 12: global_loss=2.2949 global_acc=41.64%
+Learning rate=0.0100
+Round 13: global_loss=2.2483 global_acc=42.79%
+Learning rate=0.0100
+Round 14: global_loss=2.2071 global_acc=43.57%
+Learning rate=0.0100
+Round 15: global_loss=2.1655 global_acc=44.89%
+Learning rate=0.0100
+Round 16: global_loss=2.1380 global_acc=45.11%
+Learning rate=0.0100
+Round 17: global_loss=2.1127 global_acc=45.60%
+Learning rate=0.0100
+Round 18: global_loss=2.0875 global_acc=46.32%
+Learning rate=0.0100
+Round 19: global_loss=2.0559 global_acc=47.37%
+Learning rate=0.0100
+Round 20: global_loss=2.0429 global_acc=47.38%
+Learning rate=0.0100
+Round 21: global_loss=2.0132 global_acc=48.14%
+Learning rate=0.0100
+Round 22: global_loss=1.9904 global_acc=48.40%
+Learning rate=0.0100
+Round 23: global_loss=1.9636 global_acc=49.13%
+Learning rate=0.0100
+Round 24: global_loss=1.9501 global_acc=49.72%
+Learning rate=0.0100
+Round 25: global_loss=1.9377 global_acc=50.07%
+Learning rate=0.0100
+Round 26: global_loss=1.9312 global_acc=50.28%
+Learning rate=0.0100
+Round 27: global_loss=1.9116 global_acc=50.84%
+Learning rate=0.0100
+Round 28: global_loss=1.9002 global_acc=50.62%
+Learning rate=0.0100
+Round 29: global_loss=1.8888 global_acc=51.27%
+Learning rate=0.0100
+Round 30: global_loss=1.8670 global_acc=51.55%
+Learning rate=0.0100
+Round 31: global_loss=1.8508 global_acc=51.61%
+Learning rate=0.0100
+Round 32: global_loss=1.8482 global_acc=52.02%
+Learning rate=0.0100
+Round 33: global_loss=1.8296 global_acc=52.36%
+Learning rate=0.0100
+Round 34: global_loss=1.8200 global_acc=52.67%
+Learning rate=0.0100
+Round 35: global_loss=1.8095 global_acc=52.62%
+Learning rate=0.0100
+Round 36: global_loss=1.7985 global_acc=52.94%
+Learning rate=0.0100
+Round 37: global_loss=1.8003 global_acc=53.16%
+Learning rate=0.0100
+Round 38: global_loss=1.7920 global_acc=53.50%
+Learning rate=0.0100
+Round 39: global_loss=1.7841 global_acc=53.04%
+Learning rate=0.0100
+Round 40: global_loss=1.7779 global_acc=53.64%
+Learning rate=0.0100
+Round 41: global_loss=1.7740 global_acc=53.68%
+Learning rate=0.0100
+Round 42: global_loss=1.7577 global_acc=54.20%
+Learning rate=0.0100
+Round 43: global_loss=1.7457 global_acc=54.08%
+Learning rate=0.0100
+Round 44: global_loss=1.7414 global_acc=54.56%
+Learning rate=0.0100
+Round 45: global_loss=1.7298 global_acc=54.59%
+Learning rate=0.0100
+Round 46: global_loss=1.7323 global_acc=54.47%
+Learning rate=0.0100
+Round 47: global_loss=1.7173 global_acc=54.98%
+Learning rate=0.0100
+Round 48: global_loss=1.7205 global_acc=55.05%
+Learning rate=0.0100
+Round 49: global_loss=1.7200 global_acc=55.05%
+Learning rate=0.0100
+Round 50: global_loss=1.6978 global_acc=55.41%
+Learning rate=0.0100
+Round 51: global_loss=1.7047 global_acc=55.36%
+Learning rate=0.0100
+Round 52: global_loss=1.6942 global_acc=55.44%
+Learning rate=0.0100
+Round 53: global_loss=1.6958 global_acc=54.89%
+Learning rate=0.0100
+Round 54: global_loss=1.6868 global_acc=55.68%
+Learning rate=0.0100
+Round 55: global_loss=1.6921 global_acc=55.60%
+Learning rate=0.0100
+Round 56: global_loss=1.6786 global_acc=55.72%
+Learning rate=0.0100
+Round 57: global_loss=1.6829 global_acc=55.65%
+Learning rate=0.0100
+Round 58: global_loss=1.6842 global_acc=55.42%
+Learning rate=0.0100
+Round 59: global_loss=1.6694 global_acc=55.76%
+Learning rate=0.0100
+Round 60: global_loss=1.6745 global_acc=56.14%
+Learning rate=0.0100
+Round 61: global_loss=1.6670 global_acc=56.07%
+Learning rate=0.0100
+Round 62: global_loss=1.6670 global_acc=55.86%
+Learning rate=0.0100
+Round 63: global_loss=1.6646 global_acc=56.05%
+Learning rate=0.0100
+Round 64: global_loss=1.6547 global_acc=56.41%
+Learning rate=0.0100
+Round 65: global_loss=1.6589 global_acc=56.52%
+Learning rate=0.0100
+Round 66: global_loss=1.6606 global_acc=56.11%
+Learning rate=0.0100
+Round 67: global_loss=1.6561 global_acc=56.38%
+Learning rate=0.0100
+Round 68: global_loss=1.6572 global_acc=56.75%
+Learning rate=0.0100
+Round 69: global_loss=1.6494 global_acc=56.39%
+Learning rate=0.0100
+Round 70: global_loss=1.6446 global_acc=56.87%
+Learning rate=0.0100
+Round 71: global_loss=1.6412 global_acc=57.08%
+Learning rate=0.0100
+Round 72: global_loss=1.6369 global_acc=56.91%
+Learning rate=0.0100
+Round 73: global_loss=1.6305 global_acc=56.67%
+Learning rate=0.0100
+Round 74: global_loss=1.6297 global_acc=56.88%
+Learning rate=0.0100
+Round 75: global_loss=1.6297 global_acc=56.85%
+Learning rate=0.0100
+Round 76: global_loss=1.6332 global_acc=57.25%
+Learning rate=0.0100
+Round 77: global_loss=1.6250 global_acc=57.46%
+Learning rate=0.0100
+Round 78: global_loss=1.6256 global_acc=57.32%
+Learning rate=0.0100
+Round 79: global_loss=1.6235 global_acc=57.06%
+Learning rate=0.0100
+Round 80: global_loss=1.6228 global_acc=57.20%
+Learning rate=0.0100
+Round 81: global_loss=1.6236 global_acc=57.60%
+Learning rate=0.0100
+Round 82: global_loss=1.6249 global_acc=57.14%
+Learning rate=0.0100
+Round 83: global_loss=1.6160 global_acc=57.38%
+Learning rate=0.0100
+Round 84: global_loss=1.6105 global_acc=57.63%
+Learning rate=0.0100
+Round 85: global_loss=1.6206 global_acc=57.44%
+Learning rate=0.0100
+Round 86: global_loss=1.6131 global_acc=57.36%
+Learning rate=0.0100
+Round 87: global_loss=1.6145 global_acc=57.77%
+Learning rate=0.0100
+Round 88: global_loss=1.6029 global_acc=57.66%
+Learning rate=0.0100
+Round 89: global_loss=1.6191 global_acc=57.60%
+Learning rate=0.0100
+Round 90: global_loss=1.6006 global_acc=58.00%
+Learning rate=0.0100
+Round 91: global_loss=1.6140 global_acc=57.41%
+Learning rate=0.0100
+Round 92: global_loss=1.6040 global_acc=57.90%
+Learning rate=0.0100
+Round 93: global_loss=1.5980 global_acc=57.83%
+Learning rate=0.0100
+Round 94: global_loss=1.6005 global_acc=57.85%
+Learning rate=0.0100
+Round 95: global_loss=1.5977 global_acc=57.88%
+Learning rate=0.0100
+Round 96: global_loss=1.5964 global_acc=57.54%
+Learning rate=0.0100
+Round 97: global_loss=1.5926 global_acc=57.82%
+Learning rate=0.0100
+Round 98: global_loss=1.5942 global_acc=58.14%
+Learning rate=0.0100
+Round 99: global_loss=1.5937 global_acc=58.15%
+Learning rate=0.0100
+Round 100: global_loss=1.5857 global_acc=58.10%
+Learning rate=0.0100
+Round 101: global_loss=1.5864 global_acc=58.06%
+Learning rate=0.0100
+Round 102: global_loss=1.5886 global_acc=57.87%
+Learning rate=0.0100
+Round 103: global_loss=1.5802 global_acc=58.36%
+Learning rate=0.0100
+Round 104: global_loss=1.5947 global_acc=57.76%
+Learning rate=0.0100
+Round 105: global_loss=1.5892 global_acc=57.77%
+Learning rate=0.0100
+Round 106: global_loss=1.5881 global_acc=58.32%
+Learning rate=0.0100
+Round 107: global_loss=1.5881 global_acc=57.84%
+Learning rate=0.0100
+Round 108: global_loss=1.5829 global_acc=58.39%
+Learning rate=0.0100
+Round 109: global_loss=1.5923 global_acc=58.15%
+Learning rate=0.0100
+Round 110: global_loss=1.5872 global_acc=57.85%
+Learning rate=0.0100
+Round 111: global_loss=1.5997 global_acc=57.69%
+Learning rate=0.0100
+Round 112: global_loss=1.5904 global_acc=58.15%
+Learning rate=0.0100
+Round 113: global_loss=1.5684 global_acc=58.12%
+Learning rate=0.0100
+Round 114: global_loss=1.5934 global_acc=57.75%
+Learning rate=0.0100
+Round 115: global_loss=1.5926 global_acc=58.41%
+Learning rate=0.0100
+Round 116: global_loss=1.5802 global_acc=58.56%
+Learning rate=0.0100
+Round 117: global_loss=1.5845 global_acc=58.03%
+Learning rate=0.0100
+Round 118: global_loss=1.5771 global_acc=58.22%
+Learning rate=0.0100
+Round 119: global_loss=1.5656 global_acc=58.68%
+Learning rate=0.0100
+Round 120: global_loss=1.5705 global_acc=58.40%
+Learning rate=0.0100
+Round 121: global_loss=1.5745 global_acc=58.44%
+Learning rate=0.0100
+Round 122: global_loss=1.5742 global_acc=58.38%
+Learning rate=0.0100
+Round 123: global_loss=1.5752 global_acc=58.56%
+Learning rate=0.0100
+Round 124: global_loss=1.5778 global_acc=58.13%
+Learning rate=0.0100
+Round 125: global_loss=1.5663 global_acc=58.34%
+Learning rate=0.0100
+Round 126: global_loss=1.5719 global_acc=58.37%
+Learning rate=0.0100
+Round 127: global_loss=1.5736 global_acc=58.50%
+Learning rate=0.0100
+Round 128: global_loss=1.5704 global_acc=58.79%
+Learning rate=0.0100
+Round 129: global_loss=1.5731 global_acc=58.25%
+Learning rate=0.0100
+Round 130: global_loss=1.5636 global_acc=58.99%
+Learning rate=0.0100
+Round 131: global_loss=1.5710 global_acc=58.27%
+Learning rate=0.0100
+Round 132: global_loss=1.5652 global_acc=58.73%
+Learning rate=0.0100
+Round 133: global_loss=1.5641 global_acc=58.63%
+Learning rate=0.0100
+Round 134: global_loss=1.5696 global_acc=58.78%
+Learning rate=0.0100
+Round 135: global_loss=1.5638 global_acc=59.06%
+Learning rate=0.0100
+Round 136: global_loss=1.5685 global_acc=58.35%
+Learning rate=0.0100
+Round 137: global_loss=1.5540 global_acc=59.00%
+Learning rate=0.0100
+Round 138: global_loss=1.5630 global_acc=58.96%
+Learning rate=0.0100
+Round 139: global_loss=1.5680 global_acc=58.69%
+Learning rate=0.0100
+Round 140: global_loss=1.5756 global_acc=58.66%
+Learning rate=0.0100
+Round 141: global_loss=1.5758 global_acc=58.37%
+Learning rate=0.0100
+Round 142: global_loss=1.5642 global_acc=58.49%
+Learning rate=0.0100
+Round 143: global_loss=1.5657 global_acc=58.54%
+Learning rate=0.0100
+Round 144: global_loss=1.5614 global_acc=58.72%
+Learning rate=0.0100
+Round 145: global_loss=1.5555 global_acc=58.75%
+Learning rate=0.0100
+Round 146: global_loss=1.5656 global_acc=58.87%
+Learning rate=0.0100
+Round 147: global_loss=1.5540 global_acc=58.96%
+Learning rate=0.0100
+Round 148: global_loss=1.5605 global_acc=58.79%
+Learning rate=0.0100
+Round 149: global_loss=1.5650 global_acc=58.69%
+Learning rate=0.0100
+Round 150: global_loss=1.5584 global_acc=59.07%
+Learning rate=0.0100
+Round 151: global_loss=1.5632 global_acc=59.06%
+Learning rate=0.0100
+Round 152: global_loss=1.5616 global_acc=58.97%
+Learning rate=0.0100
+Round 153: global_loss=1.5556 global_acc=58.82%
+Learning rate=0.0100
+Round 154: global_loss=1.5608 global_acc=59.04%
+Learning rate=0.0100
+Round 155: global_loss=1.5595 global_acc=59.18%
+Learning rate=0.0100
+Round 156: global_loss=1.5576 global_acc=58.97%
+Learning rate=0.0100
+Round 157: global_loss=1.5500 global_acc=59.08%
+Learning rate=0.0100
+Round 158: global_loss=1.5639 global_acc=59.06%
+Learning rate=0.0100
+Round 159: global_loss=1.5505 global_acc=58.97%
+Learning rate=0.0100
+Round 160: global_loss=1.5544 global_acc=58.89%
+Learning rate=0.0100
+Round 161: global_loss=1.5590 global_acc=59.15%
+Learning rate=0.0100
+Round 162: global_loss=1.5593 global_acc=59.15%
+Learning rate=0.0100
+Round 163: global_loss=1.5500 global_acc=58.96%
+Learning rate=0.0100
+Round 164: global_loss=1.5556 global_acc=59.14%
+Learning rate=0.0100
+Round 165: global_loss=1.5614 global_acc=58.50%
+Learning rate=0.0100
+Round 166: global_loss=1.5635 global_acc=59.11%
+Learning rate=0.0100
+Round 167: global_loss=1.5507 global_acc=59.12%
+Learning rate=0.0100
+Round 168: global_loss=1.5426 global_acc=58.91%
+Learning rate=0.0100
+Round 169: global_loss=1.5592 global_acc=58.81%
+Learning rate=0.0100
+Round 170: global_loss=1.5533 global_acc=59.31%
+Learning rate=0.0100
+Round 171: global_loss=1.5523 global_acc=59.11%
+Learning rate=0.0100
+Round 172: global_loss=1.5561 global_acc=58.85%
+Learning rate=0.0100
+Round 173: global_loss=1.5546 global_acc=59.15%
+Learning rate=0.0100
+Round 174: global_loss=1.5547 global_acc=59.42%
+Learning rate=0.0100
+Round 175: global_loss=1.5561 global_acc=58.84%
+Learning rate=0.0100
+Round 176: global_loss=1.5534 global_acc=59.04%
+Learning rate=0.0100
+Round 177: global_loss=1.5488 global_acc=59.50%
+Learning rate=0.0100
+Round 178: global_loss=1.5577 global_acc=58.88%
+Learning rate=0.0100
+Round 179: global_loss=1.5537 global_acc=59.30%
+Learning rate=0.0100
+Round 180: global_loss=1.5532 global_acc=59.44%
+Learning rate=0.0100
+Round 181: global_loss=1.5485 global_acc=59.23%
+Learning rate=0.0100
+Round 182: global_loss=1.5492 global_acc=59.20%
+Learning rate=0.0100
+Round 183: global_loss=1.5575 global_acc=59.03%
+Learning rate=0.0100
+Round 184: global_loss=1.5388 global_acc=59.51%
+Learning rate=0.0100
+Round 185: global_loss=1.5461 global_acc=59.37%
+Learning rate=0.0100
+Round 186: global_loss=1.5546 global_acc=59.24%
+Learning rate=0.0100
+Round 187: global_loss=1.5466 global_acc=59.14%
+Learning rate=0.0100
+Round 188: global_loss=1.5414 global_acc=59.48%
+Learning rate=0.0100
+Round 189: global_loss=1.5417 global_acc=59.55%
+Learning rate=0.0100
+Round 190: global_loss=1.5433 global_acc=59.61%
+Learning rate=0.0100
+Round 191: global_loss=1.5445 global_acc=59.44%
+Learning rate=0.0100
+Round 192: global_loss=1.5528 global_acc=59.69%
+Learning rate=0.0100
+Round 193: global_loss=1.5445 global_acc=59.64%
+Learning rate=0.0100
+Round 194: global_loss=1.5431 global_acc=59.41%
+Learning rate=0.0100
+Round 195: global_loss=1.5535 global_acc=58.83%
+Learning rate=0.0100
+Round 196: global_loss=1.5444 global_acc=59.80%
+Learning rate=0.0100
+Round 197: global_loss=1.5436 global_acc=59.69%
+Learning rate=0.0100
+Round 198: global_loss=1.5434 global_acc=59.45%
+Learning rate=0.0100
+Round 199: global_loss=1.5549 global_acc=59.19%
+Learning rate=0.0100
+Round 200: global_loss=1.5386 global_acc=59.25%
+Finished!
+
+Node0: Best Accuracy = 59.80%
+Node1: Best Accuracy = 55.53%
+Node2: Best Accuracy = 55.73%
+Node3: Best Accuracy = 56.10%
+Node4: Best Accuracy = 55.55%
+Node5: Best Accuracy = 55.22%
+Results appended to /data/mrebollo@upvnet.upv.es/fml/experiments/20260616/exp_115/results.csv
+Timing appended to /data/mrebollo@upvnet.upv.es/fml/experiments/20260616/timing_fml.csv
+Summary：
+
+algorithm:fed_mutual
+
+dataset:cifar100	batchsize:128
+
+node_num:5,	split:5
+
+global epochs:200,	local epochs:5,
+
+global_model:CNN2，	local model:CNN2,
+

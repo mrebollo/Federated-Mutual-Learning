@@ -1,0 +1,45 @@
+[fml-runner-v2] Using script: /var/spool/slurm/d/job137628/slurm_script
+[lun 15 jun 2026 21:39:09 CEST] Host: vrhpc2.dsic.upv.es
+[lun 15 jun 2026 21:39:09 CEST] SLURM_JOB_ID=137628 SLURM_ARRAY_TASK_ID=40
+Mon Jun 15 21:39:09 2026       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 525.125.06   Driver Version: 525.125.06   CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA A40          On   | 00000000:84:00.0 Off |                    0 |
+|  0%   23C    P8    12W / 300W |      0MiB / 46068MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+python /data/mrebollo@upvnet.upv.es/miniconda3/envs/mut/bin/python
+torch 2.7.1+cu118
+cuda_available True
+cuda_version 11.8
+device_count 1
+Running on cuda:0
+Loading dataset femnist...
+Download: True
+Traceback (most recent call last):
+  File "/data/mrebollo@upvnet.upv.es/fml/main.py", line 56, in <module>
+    main()
+  File "/data/mrebollo@upvnet.upv.es/fml/main.py", line 17, in main
+    data = Data(args)
+  File "/data/mrebollo@upvnet.upv.es/fml/Data.py", line 145, in __init__
+    trainset, testset = Dataset(args)
+  File "/data/mrebollo@upvnet.upv.es/fml/Data.py", line 131, in Dataset
+    trainset = FEMNIST(root='~/data', train=True, download=args.download, transform=tra_trans)
+  File "/data/mrebollo@upvnet.upv.es/fml/Data.py", line 29, in __init__
+    self.download()
+  File "/data/mrebollo@upvnet.upv.es/fml/Data.py", line 57, in download
+    utils.makedir_exist_ok(self.raw_folder)
+AttributeError: module 'torchvision.datasets.utils' has no attribute 'makedir_exist_ok'

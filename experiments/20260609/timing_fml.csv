@@ -1,0 +1,4 @@
+dataset,iid,network,model,algorithm,num_rounds,num_agents,num_iter,local_epochs,time_per_iter_mean,time_per_iter_std
+cifar10,0,none,CNN1,fed_avg,50,5,,5,163.4257276248932,0.614553568842784
+cifar10,0,none,CNN1,fed_prox,50,5,,5,357.34112151145933,1.9928968865647743
+cifar10,0,none,CNN1,fed_mutual,50,5,,5,355.0502856397629,2.1416152380599396
